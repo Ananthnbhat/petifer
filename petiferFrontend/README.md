@@ -1,4 +1,4 @@
-## Instructions on how to start react native app
+## Instructions on how to start react-native app
 
 react native should be installed first along with prerequisites such as java, android studio. Follow instructions here - https://reactnative.dev/docs/environment-setup
 
