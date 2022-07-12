@@ -1,0 +1,15 @@
+.\venv\Scripts\activate
+
+before running django:
+create virtual env, activate it using -> .\venv\Scripts\activate
+install django and psycopg2 in the virtualenv
+install postgreSQL for windows, make note of the password and other details
+then run psql and it will ask details -> just press enter for everything except password. The password is from the above step.
+
+to run django:
+python manage.py runserver
+
+
+postgreSQL:
+no username -> leave default username as postgres
+postgreSQL password = 123
