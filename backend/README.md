@@ -1,3 +1,7 @@
+Download & install python - https://www.python.org/downloads/
+
+Download & install postgresql - https://www.postgresql.org/download/
+
 ## Instructions on how to start django app
 
 - install postgresql (note down the details such as password). This alos creates a default database with username - postgres, db - postgres, server - localhost and a password given by you.
