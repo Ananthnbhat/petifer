@@ -15,7 +15,7 @@ Download & install postgresql - https://www.postgresql.org/download/
 - inside the virtualenv, install required python dependencies including psycopg2 and django.
 
 ```
-pip install psycopg2 django
+pip install -r requirements.txt
 ```
 
 - provide the details for the database in the settings.py
