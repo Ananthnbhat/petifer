@@ -13,3 +13,7 @@ Then start the app -
 ```
 npx react-native run-android
 ```
+
+## Other resources
+
+Tab navigation guide - https://reactnavigation.org/docs/tab-based-navigation/
