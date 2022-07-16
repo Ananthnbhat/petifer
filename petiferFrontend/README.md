@@ -17,3 +17,6 @@ npx react-native run-android
 ## Other resources
 
 Tab navigation guide - https://reactnavigation.org/docs/tab-based-navigation/
+Image picker - https://www.npmjs.com/package/react-native-image-picker
+Loading animation - use ActivityIndicator
+Show a popup (Modal) when required - use react-native-modal
