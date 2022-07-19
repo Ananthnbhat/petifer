@@ -21,3 +21,20 @@ my superuser details:
 username: anant
 email: ananthnbhat@gmail.com
 password: 123
+
+**********************************work flow (DRAFT) ********************************
+1st screen - Lost/found pet details upload phase:
+1st screen of app used to enter & submit the details of the pet(frontend)
+POST request comes from app (frontend)
+save the details in the DB (check for duplicate records - not in scope) (backend)
+Show a success popup message if upload successful (message TBD)(frontend)
+otherwise show a failure popup message (message TBD)
+
+Figure out how to save an image (or image path) in DB
+
+2nd screen - Show all the pets phase:
+GET request from the app (frontend)
+return all the details of all pets (backend)
+Show all the pets in the 2nd screen with their status such as lost, found or matched.
+
+Chnage status field in the model from boolean to string

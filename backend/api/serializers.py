@@ -3,6 +3,8 @@ from .models import Pet
 
 
 class PetSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.ReadOnlyField()
+
     class Meta:
         model = Pet
-        fields = ('breed', 'color', 'name')
+        fields = ('id', 'breed', 'color', 'name', 'status')
