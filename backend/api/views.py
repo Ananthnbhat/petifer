@@ -6,6 +6,7 @@ from rest_framework import status
 from .serializers import PetSerializer
 from .models import Pet
 
+
 class AllPetsView(APIView):
     def get(self, request, format=None):
         pets = Pet.objects.all().order_by('name')
@@ -16,6 +17,8 @@ class AllPetsView(APIView):
         serializer = PetSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            # if it is a lost pet -> add it to DB (and online train the ML model?)
+            # if it is a found pet -> add it to DB, compare records & see for matches in DB & ML model (test phase)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

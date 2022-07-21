@@ -61,7 +61,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"breed\": \"dogHusky\",\r\n    \"color\": \"white\",\r\n    \"name\": \"dipper\",\r\n    \"status\": false\r\n}",
+							"raw": "{\r\n    \"breed\": \"dogHusky\",\r\n    \"color\": \"white\",\r\n    \"name\": \"dipper\",\r\n    \"status\": \"lost\",\r\n    \"location\": \"Gippps street\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -95,7 +95,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 2,\r\n    \"breed\": \"cat2 updated\",\r\n    \"color\": \"black2\",\r\n    \"name\": \"luna2\"\r\n}",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"breed\": \"cat2 updated\",\r\n    \"color\": \"black2\",\r\n    \"name\": \"luna2\",\r\n    \"status\": \"found\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
