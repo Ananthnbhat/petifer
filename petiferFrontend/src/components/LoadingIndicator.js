@@ -1,10 +1,11 @@
 import React from 'react';
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
 
 const LoadingIndicator = () => {
   return (
     <View style={[styles.container, styles.horizontal]}>
-      <ActivityIndicator size="large" />
+      <ActivityIndicator animating={true} size="large" color="purple" />
     </View>
   );
 };

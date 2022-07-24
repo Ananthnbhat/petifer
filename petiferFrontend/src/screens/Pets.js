@@ -1,6 +1,8 @@
 import React from 'react';
-import {Text} from 'react-native';
+import { Text } from 'react-native';
 
 const Pets = () => {
   return <Text>Pets page</Text>;
 };
+
+export default Pets;

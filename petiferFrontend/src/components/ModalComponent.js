@@ -1,8 +1,8 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import { Button, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 
-const Modal = ({openModal, modalText}) => {
+const ModalComponent = ({ openModal, modalText }) => {
   const [isModalVisible, setModalVisible] = useState(openModal || false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -10,7 +10,7 @@ const Modal = ({openModal, modalText}) => {
   return (
     <View>
       <Modal isVisible={isModalVisible}>
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <Text>{modalText}</Text>
           <Button title="Close" onPress={toggleModal} />
         </View>
@@ -19,4 +19,4 @@ const Modal = ({openModal, modalText}) => {
   );
 };
 
-export default Modal;
+export default ModalComponent;

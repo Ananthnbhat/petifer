@@ -1,14 +1,12 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { View, Text } from 'react-native';
 
 const Header = () => {
   return (
-    <View style={[styles.container, styles.horizontal]}>
+    <View>
       <Text>header for all screens</Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default Header;
