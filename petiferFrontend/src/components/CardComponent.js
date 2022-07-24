@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native'
 import { Card, Title, Paragraph } from 'react-native-paper';
 
-const CardComp = () => (
+const CardComponent = () => (
   <Card style={styles.card}>
     <Card.Content>
       <View style={styles.wrapper}>
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CardComp;
+export default CardComponent;

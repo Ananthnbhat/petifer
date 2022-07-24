@@ -1,21 +1,21 @@
-import { API_URL } from "../constants/urls";
+import { API_URL } from '@env';
 
 const fetchAllPets = async () => {
     try {
-        console.log(API_URL)
-        const result = await fetch("http://localhost:8000/pets/");
+        const result = await fetch(API_URL);
         if (result.ok) {
             const jsonData = await result.json();
+            console.log('jsondata is', jsonData)
             return jsonData;
         }
         //catch any request errors
         const err = await result.json();
         //throw or log the error
-        console.log(err)
+        console.error(err)
     }
     //catch remaining errors
     catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
