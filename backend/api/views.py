@@ -5,7 +5,13 @@ from rest_framework import status
 
 from .serializers import PetSerializer
 from .models import Pet
+import base64
+import os
+from pathlib import Path
+import uuid
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+IMAGE_PATH = os.path.join(BASE_DIR, "images")
 
 class AllPetsView(APIView):
     def get(self, request, format=None):
@@ -16,6 +22,18 @@ class AllPetsView(APIView):
     def post(self, request, format=None):
         serializer = PetSerializer(data=request.data)
         if serializer.is_valid():
+
+            imageid = str(uuid.uuid4())
+
+            decodedimage = base64.b64decode(serializer.validated_data['image'])
+            imagepath = os.path.join(IMAGE_PATH, imageid)
+
+            f = open(imagepath, 'w+b')
+            f.write(decodedimage)
+            f.close()
+
+            serializer.validated_data['image'] = imagepath
+
             serializer.save()
             # if it is a lost pet -> add it to DB (and online train the ML model?)
             # if it is a found pet -> add it to DB, compare records & see for matches in DB & ML model (test phase)
@@ -39,7 +57,17 @@ class SinglePetView(APIView):
         pet = self.get_object(pk)
         serializer = PetSerializer(pet, data=request.data)
         if serializer.is_valid():
-            serializer.save()
+
+            imageid = str(uuid.uuid4())
+
+            decodedimage = base64.b64decode(serializer.validated_data['image'])
+            imagepath = os.path.join(IMAGE_PATH, imageid)
+
+            f = open(imagepath, 'w+b')
+            f.write(decodedimage)
+            f.close()
+
+            serializer.validated_data['image'] = imagepath
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

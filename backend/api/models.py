@@ -14,6 +14,7 @@ class Pet(models.Model):
     name = models.CharField(max_length=20, default="")
     status = models.CharField(max_length=10, choices=STATUS_TUPLE)
     location = models.CharField(max_length=50, default="")
+    image = models.TextField(default="")
 
     def __str__(self) -> str:
         return self.name
