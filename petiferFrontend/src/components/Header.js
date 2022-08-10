@@ -17,7 +17,7 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   headerView: {
-    height: '20%',
+    height: 80,
     backgroundColor: '#1e4066',
     flexDirection: 'row',
     alignContent: 'center',

@@ -1,30 +1,77 @@
-import React, { useEffect } from 'react';
-import { fetchAllPets } from '../api';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { postNewPet } from '../api';
+import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { RadioButton, Text, Button } from 'react-native-paper';
+import { imagePicker, takePhoto } from '../utils/uploadPhoto';
 
 const BUTTON_COLOR = '#bcd2e9';
+const EMPTY_IMAGE_DETAILS = {
+  fileType: '',
+  fileUri: '',
+  fileData: '',
+  fileName: '',
+}
 
 const Home = () => {
-  useEffect(() => {
-    // test API
-    const allPets = fetchAllPets();
-    console.log(allPets);
-  }, []);
 
-  const [checked, setChecked] = React.useState('lost');
+  const [status, setStatus] = useState('lost');
+  const [imgDetails, setImgDetails] = useState(EMPTY_IMAGE_DETAILS);
+
+  useEffect(() => {
+    if (imgDetails.fileData) {
+      console.log("image selected")
+      // const petData = {
+      //   'status': status,
+      //   'image': imgDetails.fileData
+      // }
+      // const result = postNewPet(petData);
+      // if (result) {
+      //   // show success popup & matched pets if any
+      // } else {
+      //   // show failure popup
+      // }
+    }
+    return () => {
+      // cleanup
+      // setImgDetails(EMPTY_IMAGE_DETAILS);
+    };
+  }, [imgDetails.fileData]);
+
+  const uploadImageFromGallery = async () => {
+    const asset = await imagePicker()
+    if (asset && asset.base64) {
+      setImgDetails({
+        fileType: asset.type,
+        fileUri: asset.uri,
+        fileData: asset.base64,
+        fileName: asset.fileName
+      });
+    }
+  }
+
+  const capturePhoto = async () => {
+    const asset = await takePhoto();
+    if (asset && asset.base64) {
+      setImgDetails({
+        fileType: asset.type,
+        fileUri: asset.uri,
+        fileData: asset.base64,
+        fileName: asset.fileName
+      });
+    }
+  }
 
   return (
     <>
       <View style={styles.selectOption}>
         <TouchableOpacity
-          onPress={() => setChecked('lost')}
-          style={[styles.radioWrapper, checked === 'lost' ? styles.bgColor : null]}>
+          onPress={() => setStatus('lost')}
+          style={[styles.radioWrapper, status === 'lost' ? styles.bgColor : null]}>
           <View>
             <RadioButton
               value='lost'
-              status={checked === 'lost' ? 'checked' : 'unchecked'}
-              onPress={() => setChecked('lost')}
+              status={status === 'lost' ? 'checked' : 'unchecked'}
+              onPress={() => setStatus('lost')}
               color='black'
             />
           </View>
@@ -33,13 +80,13 @@ const Home = () => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => setChecked('found')}
-          style={[styles.radioWrapper, checked === 'found' ? styles.bgColor : null]}>
+          onPress={() => setStatus('found')}
+          style={[styles.radioWrapper, status === 'found' ? styles.bgColor : null]}>
           <View>
             <RadioButton
               value='found'
-              status={checked === 'found' ? 'checked' : 'unchecked'}
-              onPress={() => setChecked('found')}
+              status={status === 'found' ? 'checked' : 'unchecked'}
+              onPress={() => setStatus('found')}
               color='black'
             />
           </View>
@@ -49,11 +96,11 @@ const Home = () => {
         </TouchableOpacity>
       </View>
       <View>
-        {checked === 'lost' ?
+        {status === 'lost' ?
           <Button
             icon="upload"
             mode="contained"
-            onPress={() => console.log('Pressed')}
+            onPress={() => uploadImageFromGallery()}
             color={BUTTON_COLOR}
             style={styles.uploadBtn}
             labelStyle={{ fontSize: 30 }}
@@ -64,7 +111,7 @@ const Home = () => {
           <Button
             icon="camera"
             mode="contained"
-            onPress={() => console.log('Pressed')}
+            onPress={() => capturePhoto()}
             color={BUTTON_COLOR}
             style={styles.uploadBtn}
             labelStyle={{ fontSize: 30 }}
@@ -72,7 +119,12 @@ const Home = () => {
             Take a photo
           </Button>
         }
-
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Text>{'\n'}</Text>
+          <Text>Image saved to app 👇🏼</Text>
+          <Text>{'\n'}</Text>
+          <Image source={{ uri: 'data:image/jpeg;base64,' + imgDetails.fileData }} style={{ width: 200, height: 200, borderRadius: 10 }} />
+        </View>
       </View>
     </>
   );
