@@ -14,6 +14,8 @@ const postNewPet = async data => {
             const jsonData = await result.json();
             console.log('new pet added: ', jsonData);
             return jsonData;
+        } else {
+            return false;
         }
     } catch (err) {
         console.error(err);

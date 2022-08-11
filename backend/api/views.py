@@ -15,7 +15,7 @@ IMAGE_PATH = os.path.join(BASE_DIR, "images")
 
 class AllPetsView(APIView):
     def get(self, request, format=None):
-        pets = Pet.objects.all().order_by('name')
+        pets = Pet.objects.all().order_by('id')
         serializer = PetSerializer(pets, many=True)
         return Response(serializer.data)
 
@@ -35,6 +35,7 @@ class AllPetsView(APIView):
             serializer.validated_data['image'] = imagepath
 
             serializer.save()
+            # TODO
             # if it is a lost pet -> add it to DB (and online train the ML model?)
             # if it is a found pet -> add it to DB, compare records & see for matches in DB & ML model (test phase)
             return Response(serializer.data, status=status.HTTP_201_CREATED)

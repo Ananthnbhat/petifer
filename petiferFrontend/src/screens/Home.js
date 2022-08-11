@@ -3,6 +3,7 @@ import { postNewPet } from '../api';
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { RadioButton, Text, Button } from 'react-native-paper';
 import { imagePicker, takePhoto } from '../utils/uploadPhoto';
+import { Popup, LoadingIndicator } from '../components';
 
 const BUTTON_COLOR = '#bcd2e9';
 const EMPTY_IMAGE_DETAILS = {
@@ -16,24 +17,31 @@ const Home = () => {
 
   const [status, setStatus] = useState('lost');
   const [imgDetails, setImgDetails] = useState(EMPTY_IMAGE_DETAILS);
+  const [popupText, setPopupText] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (imgDetails.fileData) {
-      console.log("image selected")
-      // const petData = {
-      //   'status': status,
-      //   'image': imgDetails.fileData
-      // }
-      // const result = postNewPet(petData);
-      // if (result) {
-      //   // show success popup & matched pets if any
-      // } else {
-      //   // show failure popup
-      // }
+
+      setLoading(true)
+
+      const petData = {
+        'status': status,
+        'image': imgDetails.fileData
+      }
+      const result = postNewPet(petData);
+      setLoading(false)
+      if (result) {
+        // show success popup & matched pets if any
+        setPopupText('Image uploaded')
+      } else {
+        // show failure popup
+        setPopupText('Upload unsuccesfull')
+      }
     }
     return () => {
       // cleanup
-      // setImgDetails(EMPTY_IMAGE_DETAILS);
+      setImgDetails(EMPTY_IMAGE_DETAILS);
     };
   }, [imgDetails.fileData]);
 
@@ -63,6 +71,8 @@ const Home = () => {
 
   return (
     <>
+      {loading && <LoadingIndicator />}
+      {popupText != '' && <Popup text={popupText} closePopup={() => setPopupText('')} />}
       <View style={styles.selectOption}>
         <TouchableOpacity
           onPress={() => setStatus('lost')}
@@ -119,12 +129,6 @@ const Home = () => {
             Take a photo
           </Button>
         }
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Text>{'\n'}</Text>
-          <Text>Image saved to app 👇🏼</Text>
-          <Text>{'\n'}</Text>
-          <Image source={{ uri: 'data:image/jpeg;base64,' + imgDetails.fileData }} style={{ width: 200, height: 200, borderRadius: 10 }} />
-        </View>
       </View>
     </>
   );
