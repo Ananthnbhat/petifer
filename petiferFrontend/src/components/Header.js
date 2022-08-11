@@ -1,15 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Button } from 'react-native-paper';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
 const Header = () => {
   return (
     <View style={styles.headerView}>
-      <Button
-      // icon={require('../assets/icons/petify.jpg')}
-      >
-        Image
-      </Button>
+      <Image
+        style={styles.tinyLogo}
+        source={require('../assets/icons/paw.png')}
+      />
       <Text style={styles.headerText}>Petify</Text>
     </View>
   );
@@ -20,13 +18,19 @@ const styles = StyleSheet.create({
     height: 80,
     backgroundColor: '#1e4066',
     flexDirection: 'row',
-    alignContent: 'center',
+    alignItems: 'center',
   },
   headerText: {
     color: 'white',
     fontSize: 25,
     alignSelf: 'center',
-  }
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
+    marginLeft: 10,
+    marginRight: 20
+  },
 })
 
 export default Header;
