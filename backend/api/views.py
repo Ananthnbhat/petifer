@@ -26,7 +26,7 @@ class AllPetsView(APIView):
             imageid = str(uuid.uuid4())
 
             decodedimage = base64.b64decode(serializer.validated_data['image'])
-            imagepath = os.path.join(IMAGE_PATH, imageid)
+            imagepath = os.path.join(IMAGE_PATH, imageid + '.jpg')
 
             f = open(imagepath, 'w+b')
             f.write(decodedimage)
