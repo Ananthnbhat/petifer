@@ -1,0 +1,17 @@
+[
+    {
+        "id": 11,
+        "status": "lost",
+        "image": "E:\\code\\petifer\\backend\\images\\73d051d5-39af-491d-aa62-a6554dd4dc5f.jpg"
+    },
+    {
+        "id": 12,
+        "status": "lost",
+        "image": "E:\\code\\petifer\\backend\\images\\73d051d5-39af-491d-aa62-a6554dd4dc5f.jpg"
+    },
+    {
+        "id": 36,
+        "status": "found",
+        "image": "E:\\code\\petifer\\backend\\images\\73d051d5-39af-491d-aa62-a6554dd4dc5f.jpg"
+    }
+]
