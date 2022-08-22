@@ -13,7 +13,10 @@ const EMPTY_IMAGE_DETAILS = {
   fileName: '',
 }
 
-const Home = () => {
+const SUCCESS_MSG = 'Image uploaded successfully !'
+const FAILURE_MSG = 'Upload unsuccesfull'
+
+const Home = ({ navigation }) => {
 
   const [status, setStatus] = useState('lost');
   const [imgDetails, setImgDetails] = useState(EMPTY_IMAGE_DETAILS);
@@ -33,10 +36,10 @@ const Home = () => {
       setLoading(false)
       if (result) {
         // show success popup & matched pets if any
-        setPopupText('Image uploaded')
+        setPopupText(SUCCESS_MSG)
       } else {
         // show failure popup
-        setPopupText('Upload unsuccesfull')
+        setPopupText(FAILURE_MSG)
       }
     }
     return () => {
@@ -44,6 +47,16 @@ const Home = () => {
       setImgDetails(EMPTY_IMAGE_DETAILS);
     };
   }, [imgDetails.fileData]);
+
+  const handleClosePopup = () => {
+
+    if (popupText === SUCCESS_MSG) {
+      setPopupText('')
+      navigation.navigate('MatchedPets')
+    } else {
+      setPopupText('')
+    }
+  }
 
   const uploadImageFromGallery = async () => {
     const asset = await imagePicker()
@@ -72,7 +85,7 @@ const Home = () => {
   return (
     <>
       {loading && <LoadingIndicator />}
-      {popupText != '' && <Popup text={popupText} closePopup={() => setPopupText('')} />}
+      {popupText != '' && <Popup text={popupText} closePopup={handleClosePopup} />}
       <View style={styles.selectOption}>
         <TouchableOpacity
           onPress={() => setStatus('lost')}
