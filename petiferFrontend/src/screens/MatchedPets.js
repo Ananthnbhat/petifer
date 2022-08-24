@@ -1,9 +1,14 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import openMap from 'react-native-open-maps';
 
 import matchedPets from '../assets/test/matched-pets.json'
 
 const MatchedPets = () => {
+
+  const openLocOnMap = (latitude, longitude) => {
+    openMap({ latitude, longitude });
+  }
 
   return (
     <>
@@ -14,7 +19,12 @@ const MatchedPets = () => {
             source={{ uri: "data:image/png;base64," + pet.image }}
           />
           <View style={styles.txtWrapper}>
-            <Text style={styles.petDetails}>Location detals here</Text>
+            <TouchableOpacity onPress={() => openLocOnMap(pet.latitude, pet.longitude)}>
+              <Image
+                source={require("../assets/icons/maps.png")}
+                style={styles.mapLogo}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       ))}
