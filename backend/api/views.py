@@ -5,6 +5,7 @@ from rest_framework import status
 
 from .serializers import PetSerializer
 from .models import Pet
+from .ml import Ml
 import base64
 import os
 from pathlib import Path
@@ -38,7 +39,15 @@ class AllPetsView(APIView):
             # TODO
             # if it is a lost pet -> add it to DB (and online train the ML model?)
             # if it is a found pet -> add it to DB, compare records & see for matches in DB & ML model (test phase)
+
+            if serializer.data['status'] == 'found':
+                ml = Ml()
+                results = ml.compare(serializer.data)
+
+                return Response(results, status=status.HTTP_201_CREATED)
+            
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
