@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { postNewPet } from '../api';
-import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { RadioButton, Text, Button } from 'react-native-paper';
 import { imagePicker, takePhoto } from '../utils/uploadPhoto';
 import { Popup, LoadingIndicator } from '../components';
+import getCurrentLocation from '../utils/getCurrentLocation';
 
 const BUTTON_COLOR = '#bcd2e9';
 const EMPTY_IMAGE_DETAILS = {
-  fileType: '',
-  fileUri: '',
   fileData: '',
-  fileName: '',
+  latitude: '',
+  longitude: ''
 }
 
 const SUCCESS_MSG = 'Image uploaded successfully !'
@@ -30,7 +30,9 @@ const Home = ({ navigation }) => {
 
       const petData = {
         'status': status,
-        'image': imgDetails.fileData
+        'image': imgDetails.fileData,
+        'latitude': imgDetails.latitude,
+        'longitude': imgDetails.longitude,
       }
       const result = postNewPet(petData);
       setLoading(false)
@@ -61,23 +63,21 @@ const Home = ({ navigation }) => {
   const uploadImageFromGallery = async () => {
     const asset = await imagePicker()
     if (asset && asset.base64) {
-      setImgDetails({
-        fileType: asset.type,
-        fileUri: asset.uri,
+      setImgDetails(prevState => ({
+        ...prevState,
         fileData: asset.base64,
-        fileName: asset.fileName
-      });
+      }));
     }
   }
 
   const capturePhoto = async () => {
     const asset = await takePhoto();
+    const location = await getCurrentLocation();
     if (asset && asset.base64) {
       setImgDetails({
-        fileType: asset.type,
-        fileUri: asset.uri,
         fileData: asset.base64,
-        fileName: asset.fileName
+        latitude: location.latitude,
+        longitude: location.longitude
       });
     }
   }
