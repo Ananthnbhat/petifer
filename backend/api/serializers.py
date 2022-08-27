@@ -7,4 +7,4 @@ class PetSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Pet
-        fields = ('id', 'status', 'image')
+        fields = ('id', 'status', 'image', 'latitude', 'longitude')
