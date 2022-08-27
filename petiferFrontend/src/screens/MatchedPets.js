@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import openMap from 'react-native-open-maps';
+import { LightboxView } from '../components';
 
 import matchedPets from '../assets/test/matched-pets.json'
 
@@ -14,11 +15,9 @@ const MatchedPets = () => {
     <>
       {matchedPets.map(pet => (
         <View style={styles.container} key={pet.id}>
-          <Image
-            style={styles.tinyLogo}
-            source={{ uri: "data:image/png;base64," + pet.image }}
-          />
-          <View style={styles.txtWrapper}>
+          <LightboxView imageData={pet.image} />
+          <View style={styles.petDetails}>
+            <Text>Accuracy:&nbsp;{pet.accuracy}%</Text>
             <TouchableOpacity onPress={() => openLocOnMap(pet.latitude, pet.longitude)}>
               <Image
                 source={require("../assets/icons/maps.png")}
@@ -40,13 +39,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
-  tinyLogo: {
+  petImage: {
     width: 150,
     height: 150,
   },
   txtWrapper: {
   },
   petDetails: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start'
   }
 });
 
