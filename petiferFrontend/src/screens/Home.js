@@ -5,20 +5,14 @@ import { RadioButton, Text, Button } from 'react-native-paper';
 import { imagePicker, takePhoto } from '../utils/uploadPhoto';
 import { Popup, LoadingIndicator } from '../components';
 import getCurrentLocation from '../utils/getCurrentLocation';
-
-const BUTTON_COLOR = '#bcd2e9';
-const EMPTY_IMAGE_DETAILS = {
-  fileData: '',
-  latitude: '',
-  longitude: ''
-}
-
-const SUCCESS_MSG = 'Image uploaded successfully !'
-const FAILURE_MSG = 'Upload unsuccesfull'
+import {
+  BUTTON_COLOR, EMPTY_IMAGE_DETAILS,
+  FOUND, LOST, SUCCESS_MSG, FAILURE_MSG
+} from '../constants/homeConstants';
 
 const Home = ({ navigation }) => {
 
-  const [status, setStatus] = useState('lost');
+  const [status, setStatus] = useState(LOST);
   const [imgDetails, setImgDetails] = useState(EMPTY_IMAGE_DETAILS);
   const [popupText, setPopupText] = useState('');
   const [loading, setLoading] = useState(false);
@@ -52,7 +46,7 @@ const Home = ({ navigation }) => {
 
   const handleClosePopup = () => {
 
-    if (popupText === SUCCESS_MSG) {
+    if (popupText === SUCCESS_MSG && status == LOST) {
       setPopupText('')
       navigation.navigate('MatchedPets')
     } else {
@@ -88,13 +82,13 @@ const Home = ({ navigation }) => {
       {popupText != '' && <Popup text={popupText} closePopup={handleClosePopup} />}
       <View style={styles.selectOption}>
         <TouchableOpacity
-          onPress={() => setStatus('lost')}
-          style={[styles.radioWrapper, status === 'lost' ? styles.bgColor : null]}>
+          onPress={() => setStatus(LOST)}
+          style={[styles.radioWrapper, status === LOST ? styles.bgColor : null]}>
           <View>
             <RadioButton
-              value='lost'
-              status={status === 'lost' ? 'checked' : 'unchecked'}
-              onPress={() => setStatus('lost')}
+              value={LOST}
+              status={status === LOST ? 'checked' : 'unchecked'}
+              onPress={() => setStatus(LOST)}
               color='black'
             />
           </View>
@@ -103,13 +97,13 @@ const Home = ({ navigation }) => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => setStatus('found')}
-          style={[styles.radioWrapper, status === 'found' ? styles.bgColor : null]}>
+          onPress={() => setStatus(FOUND)}
+          style={[styles.radioWrapper, status === FOUND ? styles.bgColor : null]}>
           <View>
             <RadioButton
-              value='found'
-              status={status === 'found' ? 'checked' : 'unchecked'}
-              onPress={() => setStatus('found')}
+              value={FOUND}
+              status={status === FOUND ? 'checked' : 'unchecked'}
+              onPress={() => setStatus(FOUND)}
               color='black'
             />
           </View>
@@ -119,7 +113,7 @@ const Home = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <View>
-        {status === 'lost' ?
+        {status === LOST ?
           <Button
             icon="upload"
             mode="contained"
