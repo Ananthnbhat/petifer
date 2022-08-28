@@ -12,6 +12,9 @@ class Ml():
 
         results = [{
             'accuracy': 1,
-            'image': encodedimage
+            'image': encodedimage,
+            'id': 0,
+            'latitude': "-33.865143",
+            'longitude': "151.209900"
         }]
         return results

@@ -40,7 +40,7 @@ class AllPetsView(APIView):
             # if it is a lost pet -> add it to DB (and online train the ML model?)
             # if it is a found pet -> add it to DB, compare records & see for matches in DB & ML model (test phase)
 
-            if serializer.data['status'] == 'found':
+            if serializer.data['status'] == 'lost':
                 ml = Ml()
                 results = ml.compare(serializer.data)
 
