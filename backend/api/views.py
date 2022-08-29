@@ -47,6 +47,8 @@ class AllPetsView(APIView):
                 return Response(results, status=status.HTTP_201_CREATED)
             
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            print(serializer.error_messages)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
