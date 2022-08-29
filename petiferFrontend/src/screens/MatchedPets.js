@@ -3,12 +3,12 @@ import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import openMap from 'react-native-open-maps';
 import { LightboxView } from '../components';
 
-import matchedPets from '../assets/test/matched-pets.json'
+const MatchedPets = ({ route }) => {
 
-const MatchedPets = () => {
+  const { matchedPets } = route.params;
 
   const openLocOnMap = (latitude, longitude) => {
-    openMap({ latitude, longitude });
+    openMap({ query: `${latitude},${longitude}` });
   }
 
   return (

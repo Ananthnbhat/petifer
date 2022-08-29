@@ -7,7 +7,7 @@ import { Popup, LoadingIndicator } from '../components';
 import getCurrentLocation from '../utils/getCurrentLocation';
 import {
   BUTTON_COLOR, EMPTY_IMAGE_DETAILS,
-  FOUND, LOST, SUCCESS_MSG, FAILURE_MSG
+  FOUND, LOST, SUCCESS_MSG, FAILURE_MSG, EMPTY_MATCHED_PETS
 } from '../constants/homeConstants';
 
 const Home = ({ navigation }) => {
@@ -16,6 +16,7 @@ const Home = ({ navigation }) => {
   const [imgDetails, setImgDetails] = useState(EMPTY_IMAGE_DETAILS);
   const [popupText, setPopupText] = useState('');
   const [loading, setLoading] = useState(false);
+  const [matchedPets, setMatchedPets] = useState(EMPTY_MATCHED_PETS)
 
   useEffect(() => {
     if (imgDetails.fileData) {
@@ -23,20 +24,27 @@ const Home = ({ navigation }) => {
       setLoading(true)
 
       const petData = {
-        'status': status,
         'image': imgDetails.fileData,
+        'status': status,
         'latitude': imgDetails.latitude,
         'longitude': imgDetails.longitude,
       }
-      const result = postNewPet(petData);
-      setLoading(false)
-      if (result) {
-        // show success popup & matched pets if any
-        setPopupText(SUCCESS_MSG)
-      } else {
-        // show failure popup
-        setPopupText(FAILURE_MSG)
-      }
+      // console.log(imgDetails.fileData.substring(0, 15))
+      // console.log(petData.hasOwnProperty('status'))
+      postNewPet(petData).then(result => {
+        setLoading(false)
+        if (status === 'lost' && result.length > 0) {
+          setMatchedPets(result)
+          setPopupText(SUCCESS_MSG)
+
+        } else if (status === 'found' && result.hasOwnProperty('image')) {
+          setPopupText(SUCCESS_MSG)
+
+        } else {
+          setPopupText(FAILURE_MSG)
+
+        }
+      });
     }
     return () => {
       // cleanup
@@ -48,7 +56,7 @@ const Home = ({ navigation }) => {
 
     if (popupText === SUCCESS_MSG && status == LOST) {
       setPopupText('')
-      navigation.navigate('MatchedPets')
+      navigation.navigate('MatchedPets', { matchedPets })
     } else {
       setPopupText('')
     }

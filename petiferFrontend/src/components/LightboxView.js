@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     petImage: {
         width: 150,
         height: 150,
+        resizeMode: 'contain'
     },
 });
 
