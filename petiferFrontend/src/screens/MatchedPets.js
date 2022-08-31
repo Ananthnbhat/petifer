@@ -13,42 +13,66 @@ const MatchedPets = ({ route }) => {
 
   return (
     <>
-      {matchedPets.map(pet => (
-        <View style={styles.container} key={pet.id}>
-          <LightboxView imageData={pet.image} />
-          <View style={styles.petDetails}>
-            <Text>Accuracy:&nbsp;{pet.accuracy}%</Text>
-            <TouchableOpacity onPress={() => openLocOnMap(pet.latitude, pet.longitude)}>
-              <Image
-                source={require("../assets/icons/maps.png")}
-                style={styles.mapLogo}
-              />
-            </TouchableOpacity>
+      <View style={styles.wrapper}>
+        <Text style={styles.headingText}>Matched Pets</Text>
+        {matchedPets.map(pet => (
+          <View style={styles.container} key={pet.id}>
+            <View style={styles.imgWrapper}>
+              <LightboxView imageData={pet.image} />
+            </View>
+            <View style={styles.petDetails}>
+              <Text>Accuracy:&nbsp;{pet.accuracy}%</Text>
+              <TouchableOpacity onPress={() => openLocOnMap(pet.latitude, pet.longitude)}>
+                <Image
+                  source={require("../assets/icons/next.png")}
+                  style={styles.mapLogo}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      ))}
+        ))}
+      </View>
     </>
   )
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor: 'white',
+    height: "100%"
+  },
+  headingText: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: 'black',
+    position: "relative",
+    left: "7%",
+    marginTop: 5,
+    marginBottom: 20,
+  },
   container: {
     display: 'flex',
     flexDirection: 'row',
-    margin: 5,
+    marginHorizontal: 5,
+    marginVertical: 10,
     justifyContent: 'space-between',
     alignItems: 'center'
   },
-  petImage: {
-    width: 150,
-    height: 150,
-  },
   txtWrapper: {
+  },
+  imgWrapper: {
+    flex: 1
   },
   petDetails: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'flex-start'
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 2
+  },
+  horizontalLine: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: 'gray',
   }
 });
 

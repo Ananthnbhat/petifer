@@ -13,9 +13,10 @@ const LightboxView = ({ navigator, imageData }) => (
 
 const styles = StyleSheet.create({
     petImage: {
-        width: 150,
-        height: 150,
-        resizeMode: 'contain'
+        width: 120,
+        height: 120,
+        resizeMode: 'contain',
+        // margin: 5
     },
 });
 

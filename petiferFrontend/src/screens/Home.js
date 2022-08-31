@@ -55,11 +55,9 @@ const Home = ({ navigation }) => {
   const handleClosePopup = () => {
 
     if (popupText === SUCCESS_MSG && status == LOST) {
-      setPopupText('')
       navigation.navigate('MatchedPets', { matchedPets })
-    } else {
-      setPopupText('')
     }
+    setPopupText('')
   }
 
   const uploadImageFromGallery = async () => {
@@ -86,65 +84,71 @@ const Home = ({ navigation }) => {
 
   return (
     <>
-      {loading && <LoadingIndicator />}
-      {popupText != '' && <Popup text={popupText} closePopup={handleClosePopup} />}
-      <View style={styles.selectOption}>
-        <TouchableOpacity
-          onPress={() => setStatus(LOST)}
-          style={[styles.radioWrapper, status === LOST ? styles.bgColor : null]}>
-          <View>
-            <RadioButton
-              value={LOST}
-              status={status === LOST ? 'checked' : 'unchecked'}
-              onPress={() => setStatus(LOST)}
-              color='black'
-            />
-          </View>
-          <View style={styles.labelWrapper}>
-            <Text style={styles.label}>Lost pet</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setStatus(FOUND)}
-          style={[styles.radioWrapper, status === FOUND ? styles.bgColor : null]}>
-          <View>
-            <RadioButton
-              value={FOUND}
-              status={status === FOUND ? 'checked' : 'unchecked'}
-              onPress={() => setStatus(FOUND)}
-              color='black'
-            />
-          </View>
-          <View style={styles.labelWrapper}>
-            <Text style={styles.label}>Found pet</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View>
-        {status === LOST ?
-          <Button
-            icon="upload"
-            mode="contained"
-            onPress={() => uploadImageFromGallery()}
-            color={BUTTON_COLOR}
-            style={styles.uploadBtn}
-            labelStyle={{ fontSize: 30 }}
-          >
-            Upload
-          </Button>
-          :
-          <Button
-            icon="camera"
-            mode="contained"
-            onPress={() => capturePhoto()}
-            color={BUTTON_COLOR}
-            style={styles.uploadBtn}
-            labelStyle={{ fontSize: 30 }}
-          >
-            Take a photo
-          </Button>
-        }
-      </View>
+      {loading ? <LoadingIndicator /> :
+        <>
+          {popupText != '' ? <Popup text={popupText} closePopup={handleClosePopup} /> :
+            <>
+              <View style={styles.selectOption}>
+                <TouchableOpacity
+                  onPress={() => setStatus(LOST)}
+                  style={[styles.radioWrapper, status === LOST ? styles.bgColor : null]}>
+                  <View>
+                    <RadioButton
+                      value={LOST}
+                      status={status === LOST ? 'checked' : 'unchecked'}
+                      onPress={() => setStatus(LOST)}
+                      color='black'
+                    />
+                  </View>
+                  <View style={styles.labelWrapper}>
+                    <Text style={styles.label}>Lost pet</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => setStatus(FOUND)}
+                  style={[styles.radioWrapper, status === FOUND ? styles.bgColor : null]}>
+                  <View>
+                    <RadioButton
+                      value={FOUND}
+                      status={status === FOUND ? 'checked' : 'unchecked'}
+                      onPress={() => setStatus(FOUND)}
+                      color='black'
+                    />
+                  </View>
+                  <View style={styles.labelWrapper}>
+                    <Text style={styles.label}>Found pet</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+              <View>
+                {status === LOST ?
+                  <Button
+                    icon="upload"
+                    mode="contained"
+                    onPress={() => uploadImageFromGallery()}
+                    color={BUTTON_COLOR}
+                    style={styles.uploadBtn}
+                    labelStyle={{ fontSize: 30 }}
+                  >
+                    Upload
+                  </Button>
+                  :
+                  <Button
+                    icon="camera"
+                    mode="contained"
+                    onPress={() => capturePhoto()}
+                    color={BUTTON_COLOR}
+                    style={styles.uploadBtn}
+                    labelStyle={{ fontSize: 30 }}
+                  >
+                    Take a photo
+                  </Button>
+                }
+              </View>
+            </>
+          }
+        </>
+      }
     </>
   );
 };
