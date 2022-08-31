@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, StyleSheet, Text, Pressable, View } from 'react-native';
+import { Modal, StyleSheet, Text, Pressable, View, Image } from 'react-native';
 
 const Popup = ({ text, closePopup }) => {
 
@@ -22,6 +22,7 @@ const Popup = ({ text, closePopup }) => {
                 }}>
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
+                        <Image source={require('../assets/icons/done.png')} />
                         <Text style={styles.modalText}>{text}</Text>
                         <Pressable
                             style={[styles.button, styles.buttonClose]}
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
     },
     button: {
         borderRadius: 20,
+        width: 100,
         padding: 10,
         elevation: 2,
     },
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
         // backgroundColor: '#F194FF',
     },
     buttonClose: {
-        backgroundColor: '#2196F3',
+        backgroundColor: '#F8633B',
     },
     textStyle: {
         color: 'white',
@@ -76,6 +78,7 @@ const styles = StyleSheet.create({
     },
     modalText: {
         marginBottom: 15,
+        marginTop: 20,
         textAlign: 'center',
     },
 });
