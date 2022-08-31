@@ -16,5 +16,12 @@ class Ml():
             'id': 0,
             'latitude': "-33.865143",
             'longitude': "151.209900"
+        },
+        {
+            'accuracy': 1,
+            'image': encodedimage,
+            'id': 0,
+            'latitude': "-33.865143",
+            'longitude': "151.209900"
         }]
         return results
