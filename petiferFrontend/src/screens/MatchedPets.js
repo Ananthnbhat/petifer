@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity, Text, StatusBar } from 'react-native';
 import openMap from 'react-native-open-maps';
 import { LightboxView } from '../components';
 
@@ -13,6 +13,11 @@ const MatchedPets = ({ route }) => {
 
   return (
     <>
+      <StatusBar
+        animated={true}
+        backgroundColor="white"
+        barStyle={'dark-content'}
+        hidden={false} />
       <View style={styles.wrapper}>
         <Text style={styles.headingText}>Matched Pets</Text>
         {matchedPets.map(pet => (

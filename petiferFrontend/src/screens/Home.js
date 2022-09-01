@@ -5,6 +5,7 @@ import { RadioButton, Text, Button } from 'react-native-paper';
 import { imagePicker, takePhoto } from '../utils/uploadPhoto';
 import { Popup, LoadingIndicator } from '../components';
 import getCurrentLocation from '../utils/getCurrentLocation';
+import HomeHeader from './HomeHeader';
 import {
   BUTTON_COLOR, EMPTY_IMAGE_DETAILS,
   FOUND, LOST, SUCCESS_MSG, FAILURE_MSG, EMPTY_MATCHED_PETS
@@ -88,6 +89,7 @@ const Home = ({ navigation }) => {
         <>
           {popupText != '' ? <Popup text={popupText} closePopup={handleClosePopup} /> :
             <>
+              <HomeHeader />
               <View style={styles.selectOption}>
                 <TouchableOpacity
                   onPress={() => setStatus(LOST)}
