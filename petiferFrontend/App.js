@@ -10,7 +10,7 @@ import { HeaderBackButton } from "@react-navigation/elements";
 
 import Home from "./src/screens/Home";
 import MatchedPets from "./src/screens/MatchedPets"
-import { Header } from "./src/components";
+// import { Header } from "./src/components";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +18,7 @@ const App = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Home"
