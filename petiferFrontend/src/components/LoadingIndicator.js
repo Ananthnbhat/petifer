@@ -5,7 +5,7 @@ import { ActivityIndicator } from 'react-native-paper';
 const LoadingIndicator = () => {
   return (
     <View style={[styles.container, styles.horizontal]}>
-      <ActivityIndicator animating={true} size="large" color="purple" />
+      <ActivityIndicator animating={true} size="large" color="#F8633B" />
     </View>
   );
 };

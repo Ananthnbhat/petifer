@@ -1,4 +1,4 @@
-export const BUTTON_COLOR = '#bcd2e9';
+export const BUTTON_COLOR = '#FCDE9E';
 export const EMPTY_IMAGE_DETAILS = {
     fileData: '',
     latitude: '',
