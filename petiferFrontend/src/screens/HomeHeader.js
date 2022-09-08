@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, StatusBar } from 'react-native';
 
 const WIDTH = Dimensions.get('window').width;
@@ -10,24 +10,22 @@ const HomeHeader = () => {
 
     return (
         <>
-            <View>
-                <View>
-                    <StatusBar
-                        animated={true}
-                        backgroundColor="#facd6d"
-                        hidden={false} />
-                    <Image style={styles.bannerImg} source={require('../assets/icons/topbanner.png')} />
-                    <View style={styles.titleWrapper}>
-                        <Text style={styles.title}>petifer</Text>
-                    </View>
-                    <Image style={styles.grayPaw} source={require('../assets/icons/gray-paw.png')} />
-                    <Image style={styles.pinkPaw} source={require('../assets/icons/pink-paw.png')} />
-                    <Image style={styles.orangePaw} source={require('../assets/icons/orange-paw.png')} />
-                    <Image />
-                    <Image />
-                    <View style={styles.ausMapWrapper}>
-                        <Image style={styles.ausMap} source={require('../assets/icons/aus-map.png')} />
-                    </View>
+            <View style={styles.container}>
+                <StatusBar
+                    animated={true}
+                    backgroundColor="#facd6d"
+                    hidden={false} />
+                <Image style={styles.bannerImg} source={require('../assets/icons/topbanner.png')} />
+                <View style={styles.titleWrapper}>
+                    <Text style={styles.title}>petifur</Text>
+                </View>
+                <Image style={styles.grayPaw} source={require('../assets/icons/gray-paw.png')} />
+                <Image style={styles.pinkPaw} source={require('../assets/icons/pink-paw.png')} />
+                <Image style={styles.orangePaw} source={require('../assets/icons/orange-paw.png')} />
+                <Image />
+                <Image />
+                <View style={styles.ausMapWrapper}>
+                    <Image style={styles.ausMap} source={require('../assets/icons/aus-map.png')} />
                 </View>
             </View>
         </>
@@ -35,14 +33,17 @@ const HomeHeader = () => {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        marginBottom: 20
+    },
     bannerImg: {
         width: WIDTH,
-        height: HEIGHT * 0.3
+        height: HEIGHT * 0.25
     },
     titleWrapper: {
         width: '100%',
         position: 'absolute',
-        top: 50,
+        top: 30,
         alignItems: 'center',
     },
     title: {

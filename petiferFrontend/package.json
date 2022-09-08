@@ -12,8 +12,10 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
+    "geolib": "^3.3.3",
     "react": "18.0.0",
     "react-native": "0.69.1",
+    "react-native-geocoder-reborn": "^0.9.0",
     "react-native-get-location": "^2.2.1",
     "react-native-image-picker": "^4.8.4",
     "react-native-lightbox-v2": "^0.9.0",
