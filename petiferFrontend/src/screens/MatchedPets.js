@@ -67,7 +67,7 @@ const MatchedPets = ({ route }) => {
                   </View>
                 </View>
               </View>
-              <TouchableOpacity onPress={() => openLocOnMap(pet.latitude, pet.longitude)}>
+              <TouchableOpacity style={styles.mapLogoWrapper} onPress={() => openLocOnMap(pet.latitude, pet.longitude)}>
                 <Image
                   source={require("../assets/icons/pin.png")}
                   style={styles.mapLogo}
@@ -137,9 +137,16 @@ const styles = StyleSheet.create({
   dist: {
     flex: 1,
   },
+  mapLogoWrapper: {
+    elevation: 5,
+    backgroundColor: '#f6f6f6',
+    paddingVertical: 9,
+    paddingHorizontal: 7,
+    borderRadius: 5
+  },
   mapLogo: {
-    width: 45,
-    height: 45
+    width: 40,
+    height: 40
   },
   horizontalLine: {
     borderBottomWidth: StyleSheet.hairlineWidth,
