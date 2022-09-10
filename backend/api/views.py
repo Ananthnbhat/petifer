@@ -10,6 +10,7 @@ import base64
 import os
 from pathlib import Path
 import uuid
+from .image_recognition.extractface import ExtractFace
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 IMAGE_PATH = os.path.join(BASE_DIR, "images")
@@ -31,22 +32,22 @@ class AllPetsView(APIView):
             imageid = str(uuid.uuid4())
 
             decodedimage = base64.b64decode(serializer.validated_data['image'])
+            # TODO
+            # extract face of pet image before saving in DB
+            face_extracted = ExtractFace.extract_face(decodedimage)
             imagepath = os.path.join(IMAGE_PATH, imageid + '.jpg')
 
             f = open(imagepath, 'w+b')
-            f.write(decodedimage)
+            f.write(face_extracted)
             f.close()
 
             serializer.validated_data['image'] = imagepath
 
             serializer.save()
-            # TODO
-            # if it is a lost pet -> add it to DB (and online train the ML model?)
-            # if it is a found pet -> add it to DB, compare records & see for matches in DB & ML model (test phase)
 
             if serializer.data['status'] == 'lost':
                 ml = Ml()
-                results = ml.compare(serializer.data)
+                results = ml.compare(serializer.data, imagepath)
 
                 return Response(results, status=status.HTTP_201_CREATED)
             

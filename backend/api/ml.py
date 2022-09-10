@@ -1,7 +1,8 @@
 import base64
+from .image_recognition.petmatcher import PetMatcher
 
 class Ml():
-    def compare(self, data):
+    def compare(self, data, imagepath):
 
         print(data)
         f = open(data['image'], 'rb')
@@ -9,6 +10,14 @@ class Ml():
         f.close()
 
         encodedimage = base64.b64encode(image)
+
+        # TODO
+        # found_pet_imgs = []
+
+        # pet_matcher = PetMatcher('./models')
+        # match_result = pet_matcher.match(imagepath, found_pet_imgs)  
+        # encode the images in the match_result
+
 
         results = [{
             'accuracy': 1,
