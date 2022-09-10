@@ -7,6 +7,7 @@ from . import views
 
 urlpatterns = [
     path('pets/', views.AllPetsView.as_view()),
+    path('', views.GetReq.as_view()),
     path('pet/<int:pk>', views.SinglePetView.as_view()),
 ]
 

@@ -14,6 +14,10 @@ import uuid
 BASE_DIR = Path(__file__).resolve().parent.parent
 IMAGE_PATH = os.path.join(BASE_DIR, "images")
 
+class GetReq(APIView):
+    def get(self,request):
+        return Response(status=status.HTTP_200_OK)
+
 class AllPetsView(APIView):
     def get(self, request, format=None):
         pets = Pet.objects.all().order_by('id')
