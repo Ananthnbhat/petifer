@@ -15,6 +15,10 @@ from .image_recognition.extractface import ExtractFace
 BASE_DIR = Path(__file__).resolve().parent.parent
 IMAGE_PATH = os.path.join(BASE_DIR, "images")
 
+class TestFaceExtract(APIView):
+    def get(self, request):
+        return Response(ExtractFace.extract_face(request.GET["id"], request.GET["image_path"]))
+
 class GetReq(APIView):
     def get(self,request):
         return Response(status=status.HTTP_200_OK)

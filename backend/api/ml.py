@@ -1,5 +1,6 @@
 import base64
 from .image_recognition.petmatcher import PetMatcher
+from .image_recognition.extractface import ExtractFace
 
 class Ml():
     def compare(self, data, imagepath):

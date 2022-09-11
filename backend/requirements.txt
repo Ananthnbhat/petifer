@@ -50,3 +50,16 @@ typed-ast==1.4.2
 urllib3==1.25.11
 wcwidth==0.1.9
 wrapt==1.12.1
+zipp==3.6.0
+torch
+opencv-python
+pandas
+requests
+Pillow
+torchvision
+pyyaml
+tqdm
+matplotlib
+seaborn
+keras
+tensorflow
