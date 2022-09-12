@@ -7,7 +7,9 @@ from keras.applications.efficientnet import preprocess_input
 
 class PetMatcher:
     def __init__(self, model_path):
-        self.__efficient_net_model = keras.models.load_model(model_path + 'EfficientNet', compile=False)
+        self.__efficient_net_model = keras.models.load_model(model_path + 'EfficientNet',
+                                                             compile=False,
+                                                             custom_objects={'K': K})
         self.__pca_model = pk.load(open(model_path + 'PCA.pkl','rb'))
         self.__svc_model = pk.load(open(model_path + 'SVC.pkl','rb'))
         # self.__image_path = image_path
