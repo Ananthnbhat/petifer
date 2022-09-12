@@ -40,6 +40,7 @@ ipython==7.34.0
 isort==5.6.4
 jedi==0.18.1
 jmespath==0.10.0
+joblib==1.1.0
 keras==2.10.0
 Keras-Preprocessing==1.1.2
 kiwisolver==1.4.4
@@ -80,10 +81,12 @@ PyYAML==5.3.1
 requests==2.24.0
 requests-oauthlib==1.3.0
 rsa==4.9
+scikit-learn==1.0.2
 scipy==1.7.3
 seaborn==0.12.0
 semantic-version==2.5.0
 six==1.15.0
+sklearn==0.0
 sqlparse==0.4.1
 static3==0.7.0
 tensorboard==2.10.0
@@ -93,6 +96,7 @@ tensorflow==2.10.0
 tensorflow-estimator==2.10.0
 tensorflow-io-gcs-filesystem==0.27.0
 termcolor==1.1.0
+threadpoolctl==3.1.0
 toml==0.10.2
 torch==1.12.1
 torchvision==0.13.1

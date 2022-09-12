@@ -33,8 +33,8 @@ class PetMatcher:
     
     def __create_face_features_for_image_file(self, image_file):
         # image_bytes = image.load_img(self.__image_path + image_file, target_size=(260, 260))
-        image_bytes = image.load_img(image_file, target_size=(260, 260))
-        image_bytes = image.img_to_array(image_bytes)
+        image_bytes = keras.utils.load_img(image_file, target_size=(260, 260))
+        image_bytes = keras.utils.img_to_array(image_bytes)
         image_bytes = np.expand_dims(image_bytes, axis=0)
         image_bytes = preprocess_input(image_bytes)
         return self.__efficient_net_model.predict(image_bytes)

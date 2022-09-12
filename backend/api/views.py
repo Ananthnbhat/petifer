@@ -38,11 +38,11 @@ class AllPetsView(APIView):
             decodedimage = base64.b64decode(serializer.validated_data['image'])
             # TODO
             # extract face of pet image before saving in DB
-            face_extracted = ExtractFace.extract_face(decodedimage)
+            # face_extracted = ExtractFace.extract_face(decodedimage)
             imagepath = os.path.join(IMAGE_PATH, imageid + '.jpg')
 
             f = open(imagepath, 'w+b')
-            f.write(face_extracted)
+            f.write(decodedimage)
             f.close()
 
             serializer.validated_data['image'] = imagepath
