@@ -14,12 +14,16 @@ class PetMatcher:
         self.__svc_model = pk.load(open(model_path + 'SVC.pkl','rb'))
         # self.__image_path = image_path
     
-    def match(self, pet_to_compare_image, other_pet_images):
+    def match(self, pet, found_pets):
         results = {}
 
-        pet_to_compare_face_features = self.__create_face_features_for_image_file(pet_to_compare_image)
+        pet_image = pet['image']
 
-        for other_pet_image in other_pet_images:
+
+        pet_to_compare_face_features = self.__create_face_features_for_image_file(pet_image)
+
+        for other_pet in found_pets:
+            other_pet_image = other_pet.image
             other_pet_face_features = self.__create_face_features_for_image_file(other_pet_image)
 
             face_features_pair = self.__create_face_features_pair(pet_to_compare_face_features, other_pet_face_features)
@@ -27,7 +31,10 @@ class PetMatcher:
             face_features_pair = self.__pca_model.transform(face_features_pair)
 
             prediction = self.__svc_model.predict_proba(face_features_pair)
-            results[other_pet_image] = round(prediction[0][1], 2)
+
+            results[other_pet.id] = round(prediction[0][1], 2)
+
+            #results[other_pet_image] = round(prediction[0][1], 2)
 
         return sorted(results.items(), key=lambda x: x[1], reverse=True)
     

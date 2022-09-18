@@ -14,6 +14,7 @@ from .image_recognition.extractface import ExtractFace
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 IMAGE_PATH = os.path.join(BASE_DIR, "images")
+FACE_DIR = os.path.join(BASE_DIR, "faces")
 
 class TestFaceExtract(APIView):
     def get(self, request):
@@ -36,16 +37,20 @@ class AllPetsView(APIView):
             imageid = str(uuid.uuid4())
 
             decodedimage = base64.b64decode(serializer.validated_data['image'])
-            # TODO
-            # extract face of pet image before saving in DB
-            # face_extracted = ExtractFace.extract_face(decodedimage)
             imagepath = os.path.join(IMAGE_PATH, imageid + '.jpg')
 
             f = open(imagepath, 'w+b')
             f.write(decodedimage)
             f.close()
 
-            serializer.validated_data['image'] = imagepath
+            output_file = os.path.join(FACE_DIR, imageid + ".jpg")
+
+            ExtractFace.extract_face(imageid, imagepath, output_file)
+
+            
+            
+
+            serializer.validated_data['image'] = output_file
 
             serializer.save()
 

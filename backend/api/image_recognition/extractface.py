@@ -14,15 +14,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 IMAGE_PATH = os.path.join(BASE_DIR, "images")
 
 class ExtractFace:
-    def extract_face(id, image_path):
+    def extract_face(id, imagepath, saveimagepath):
 
         color_table = [(255, 0, 255)]
 
-        output_image_folder = os.path.join(BASE_DIR, "faces")
-        output_file = os.path.join(output_image_folder, id + "_head.jpg")
         model = torch.hub.load("./yolov5", "custom", path="./weights/V2/cat_and_dog.pt", source="local")
-        print(output_file)
-        img = cv2.imread(image_path)
+
+        img = cv2.imread(imagepath)
         h, w = img.shape[0:2]
         #img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         results = model(img).pred[0].numpy()
@@ -45,7 +43,7 @@ class ExtractFace:
             #bottom_right = (top_left[0] + retval[0], top_left[1] + retval[1])
 
             img_head = img[y1:y2, x1:x2]
-            cv2.imwrite(output_file, img_head)
+            cv2.imwrite(saveimagepath, img_head)
 
             #cv2.rectangle(img, (x1, y1), (x2, y2), color_table[category], 2)
 
