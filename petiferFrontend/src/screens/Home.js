@@ -97,38 +97,6 @@ const Home = ({ navigation }) => {
           {popupText != '' ? <Popup text={popupText} closePopup={handleClosePopup} /> :
             <>
               <HomeHeader />
-              {/* <View style={styles.selectOption}>
-                <TouchableOpacity
-                  onPress={() => setStatus(LOST)}
-                  style={[styles.radioWrapper, status === LOST ? styles.bgColor : null]}>
-                  <View>
-                    <RadioButton
-                      value={LOST}
-                      status={status === LOST ? 'checked' : 'unchecked'}
-                      onPress={() => setStatus(LOST)}
-                      color='black'
-                    />
-                  </View>
-                  <View style={styles.labelWrapper}>
-                    <Text style={styles.label}>Lost pet</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => setStatus(FOUND)}
-                  style={[styles.radioWrapper, status === FOUND ? styles.bgColor : null]}>
-                  <View>
-                    <RadioButton
-                      value={FOUND}
-                      status={status === FOUND ? 'checked' : 'unchecked'}
-                      onPress={() => setStatus(FOUND)}
-                      color='black'
-                    />
-                  </View>
-                  <View style={styles.labelWrapper}>
-                    <Text style={styles.label}>Found pet</Text>
-                  </View>
-                </TouchableOpacity>
-              </View> */}
               <View style={styles.bottomTabButtons}>
                 <SegmentedControlTab
                   values={["Lost", "Found"]}
@@ -175,44 +143,13 @@ const Home = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  selectOption: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: 40,
-  },
-  radioWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignContent: 'center',
-    justifyContent: 'center',
-    width: '35%',
-    paddingVertical: 8,
-    borderRadius: 7,
-
-  },
-  labelWrapper: {
-    alignSelf: 'center',
-  },
   label: {
     fontSize: 18
-  },
-  bgColor: {
-    backgroundColor: BUTTON_COLOR,
-    borderColor: BUTTON_COLOR,
-    borderWidth: 1,
-    // for android
-    elevation: 5,
-    // for ios
-    shadowColor: '#171717',
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
   },
   bottomTabButtons: {
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    paddingVertical: 25,
+    paddingTop: 25,
     paddingHorizontal: 10,
     backgroundColor: 'white',
     // for android
@@ -222,6 +159,8 @@ const styles = StyleSheet.create({
     shadowOffset: { width: -2, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
+    // height: "100%",
+    flex: 1
   },
   uploadBtn: {
     alignSelf: 'center',

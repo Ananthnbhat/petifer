@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 30,
         alignItems: 'center',
+        justifyContent: 'center'
     },
     title: {
         width: 143,
@@ -55,7 +56,8 @@ const styles = StyleSheet.create({
         fontSize: 32,
         letterSpacing: -0.685714,
         color: '#664441',
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        textAlign: 'center'
     },
     ausMapWrapper: {
         width: '100%',
