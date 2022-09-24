@@ -25,6 +25,8 @@ class Ml():
 
         found_pets = filter(is_found_pet, pets)
 
+        if len(list(found_pets)) == 0:
+            return []
 
         modelDir = '\\api\\models\\'
         imgDir = '\\api\\testImages\\'
