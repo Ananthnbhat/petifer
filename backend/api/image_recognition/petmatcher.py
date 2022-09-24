@@ -23,6 +23,7 @@ class PetMatcher:
         pet_to_compare_face_features = self.__create_face_features_for_image_file(pet_image)
 
         for other_pet in found_pets:
+            print(other_pet)
             other_pet_image = other_pet.image
             other_pet_face_features = self.__create_face_features_for_image_file(other_pet_image)
 

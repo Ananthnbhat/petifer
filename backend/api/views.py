@@ -47,16 +47,18 @@ class AllPetsView(APIView):
 
             ExtractFace.extract_face(imageid, imagepath, output_file)
 
-            
-            
-
             serializer.validated_data['image'] = output_file
 
             serializer.save()
 
             if serializer.data['status'] == 'lost':
-                ml = Ml()
-                results = ml.compare(serializer.data, imagepath)
+
+                if (os.path.exists(output_file)):
+
+                    ml = Ml()
+                    results = ml.compare(serializer.data, imagepath)
+                else:
+                    return Response(False, status=500)
 
                 return Response(results, status=status.HTTP_201_CREATED)
             

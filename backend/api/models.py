@@ -16,4 +16,4 @@ class Pet(models.Model):
     longitude = models.TextField(default="", blank=True)
 
     def __str__(self) -> str:
-        return self.name
+        return self.image

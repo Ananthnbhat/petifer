@@ -23,9 +23,9 @@ class Ml():
         def is_found_pet(pet):
             return pet.status == 'found'
 
-        found_pets = filter(is_found_pet, pets)
+        found_pets = list(filter(is_found_pet, pets))
 
-        if len(list(found_pets)) == 0:
+        if len(found_pets) == 0:
             return []
 
         modelDir = '\\api\\models\\'
@@ -42,8 +42,9 @@ class Ml():
         #print(final_result)
         # encode the images in the final_result.
 
+        print(len(final_result))
         results = []
-        for result in final_result:
+        for result in final_result[:10]:
             which_pet = Pet.objects.get(id=result[0])
 
             f = open(which_pet.image, 'rb')
