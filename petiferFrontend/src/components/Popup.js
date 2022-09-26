@@ -22,7 +22,7 @@ const Popup = ({ text, btnText, closePopup }) => {
                 }}>
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        {text.includes("unsuccesfull") || text.includes("Sorry")
+                        {text.includes("unsuccesful") || text.includes("Sorry")
                             ? null
                             : <Image source={require('../assets/icons/done.png')} />}
                         <Text style={styles.modalText}>{text}</Text>
