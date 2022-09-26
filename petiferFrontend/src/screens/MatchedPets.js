@@ -59,7 +59,7 @@ const MatchedPets = ({ route }) => {
                 <View style={styles.accLocWrapper}>
                   <View style={styles.acc}>
                     <Text style={{ fontWeight: 'bold' }}>Accuracy</Text>
-                    <Text style={{ alignSelf: 'center' }}>{pet.accuracy}%</Text>
+                    <Text style={{ alignSelf: 'center' }}>{pet.accuracy * 100}%</Text>
                   </View>
                   <View style={styles.dist}>
                     <Text style={{ fontWeight: 'bold' }}>Distance</Text>

@@ -9,7 +9,7 @@ import getCurrentLocation from '../utils/getCurrentLocation';
 import HomeHeader from './HomeHeader';
 import {
   BUTTON_COLOR, EMPTY_IMAGE_DETAILS,
-  FOUND, LOST, SUCCESS_MSG, FAILURE_MSG, EMPTY_MATCHED_PETS
+  FOUND, LOST, SUCCESS_MSG, FAILURE_MSG, EMPTY_MATCHED_PETS, NO_MATCHED_PETS
 } from '../constants/homeConstants';
 
 const WIDTH = Dimensions.get('window').width;
@@ -19,6 +19,7 @@ const Home = ({ navigation }) => {
   const [status, setStatus] = useState(LOST);
   const [imgDetails, setImgDetails] = useState(EMPTY_IMAGE_DETAILS);
   const [popupText, setPopupText] = useState('');
+  const [popupBtnText, setPopupBtnText] = useState('Close');
   const [loading, setLoading] = useState(false);
   const [matchedPets, setMatchedPets] = useState(EMPTY_MATCHED_PETS)
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -40,10 +41,13 @@ const Home = ({ navigation }) => {
         if (selectedIndex === 0 && result.length > 0) {
           setMatchedPets(result)
           setPopupText(SUCCESS_MSG)
+          setPopupBtnText("View Matched Pets")
 
         } else if (selectedIndex === 1 && result.hasOwnProperty('image')) {
           setPopupText(SUCCESS_MSG)
 
+        } else if (result.length === 0) {
+          setPopupText(NO_MATCHED_PETS)
         } else {
           setPopupText(FAILURE_MSG)
 
@@ -59,9 +63,11 @@ const Home = ({ navigation }) => {
   const handleClosePopup = () => {
 
     if (popupText === SUCCESS_MSG && selectedIndex == 0) {
+      setPopupBtnText("View Matched Pets")
       navigation.navigate('MatchedPets', { matchedPets })
     }
     setPopupText('')
+    setPopupBtnText('Close')
   }
 
   const uploadImageFromGallery = async () => {
@@ -94,7 +100,7 @@ const Home = ({ navigation }) => {
     <>
       {loading ? <LoadingIndicator /> :
         <>
-          {popupText != '' ? <Popup text={popupText} closePopup={handleClosePopup} /> :
+          {popupText != '' ? <Popup text={popupText} btnText={popupBtnText} closePopup={handleClosePopup} /> :
             <>
               <HomeHeader />
               <View style={styles.bottomTabButtons}>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, StyleSheet, Text, Pressable, View, Image } from 'react-native';
 
-const Popup = ({ text, closePopup }) => {
+const Popup = ({ text, btnText, closePopup }) => {
 
     const [modalVisible, setModalVisible] = useState(true);
 
@@ -22,12 +22,14 @@ const Popup = ({ text, closePopup }) => {
                 }}>
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Image source={require('../assets/icons/done.png')} />
+                        {text.includes("unsuccesfull") || text.includes("Sorry")
+                            ? null
+                            : <Image source={require('../assets/icons/done.png')} />}
                         <Text style={styles.modalText}>{text}</Text>
                         <Pressable
                             style={[styles.button, styles.buttonClose]}
                             onPress={() => setModalVisible(!modalVisible)}>
-                            <Text style={styles.textStyle}>Close</Text>
+                            <Text style={styles.textStyle}>{btnText}</Text>
                         </Pressable>
                     </View>
                 </View>
@@ -60,9 +62,10 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     button: {
-        borderRadius: 20,
-        width: 100,
-        padding: 10,
+        borderRadius: 15,
+        // width: 100,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
         elevation: 2,
     },
     buttonOpen: {
