@@ -33,8 +33,6 @@ class ExtractFace:
             probility = round(results[i][4], 2)
             #category = int(results[i][5])
 
-            if probility < 0.25:
-                continue
 
             #retval, baseLine = cv2.getTextSize(
             #    result_text_show, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)

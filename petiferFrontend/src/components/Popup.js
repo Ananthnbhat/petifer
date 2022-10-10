@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         marginTop: 20,
         textAlign: 'center',
+        color: 'black'
     },
 });
 

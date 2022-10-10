@@ -58,12 +58,12 @@ const MatchedPets = ({ route }) => {
                 <Text style={styles.streetName}>{pet.streetName},&nbsp;{'\n'}{pet.city}</Text>
                 <View style={styles.accLocWrapper}>
                   <View style={styles.acc}>
-                    <Text style={{ fontWeight: 'bold' }}>Accuracy</Text>
-                    <Text style={{ alignSelf: 'center' }}>{pet.accuracy * 100}%</Text>
+                    <Text style={{ fontWeight: 'bold', color: 'black' }}>Accuracy</Text>
+                    <Text style={{ alignSelf: 'center', color: 'black' }}>{pet.accuracy * 100}%</Text>
                   </View>
                   <View style={styles.dist}>
-                    <Text style={{ fontWeight: 'bold' }}>Distance</Text>
-                    <Text style={{ alignSelf: 'flex-start' }}>{pet.distance}km</Text>
+                    <Text style={{ fontWeight: 'bold', color: 'black' }}>Distance</Text>
+                    <Text style={{ alignSelf: 'flex-start', color: 'black' }}>{pet.distance}km</Text>
                   </View>
                 </View>
               </View>
@@ -114,15 +114,16 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: 'space-around',
     alignItems: 'center',
+    marginLeft: 10,
   },
   petDetails: {
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
+    width: "70%",
   },
   streetName: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 18,
     color: 'black',
     marginVertical: 10
   },
@@ -142,11 +143,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#f6f6f6',
     paddingVertical: 9,
     paddingHorizontal: 7,
-    borderRadius: 5
+    borderRadius: 5,
+    marginRight: 10
   },
   mapLogo: {
-    width: 40,
-    height: 40
+    width: 30,
+    height: 30
   },
   horizontalLine: {
     borderBottomWidth: StyleSheet.hairlineWidth,

@@ -27,3 +27,5 @@ Show a popup (Modal) when required - use react-native-modal
 tabs to show lost & found options in Home page: https://www.npmjs.com/package/react-native-segmented-control-tab
 
 find the address using lat & lng: https://www.npmjs.com/package/react-native-geocoder
+
+npx kill-port 8081
