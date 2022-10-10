@@ -32,7 +32,7 @@ class Ml():
         imgDir = '\\api\\testImages\\'
 
         # load model
-        pet_matcher = PetMatcher(os.getcwd() + modelDir)
+        pet_matcher = PetMatcher()
         # match pets using match(lost_pet, [found_pet1, found_pet2, found_pet3...])
         final_result = pet_matcher.match(data, found_pets)
         ##final_result = pet_matcher.match(imagepath, [os.path.join(os.getcwd() + imgDir+ '512816-3.jpg'), 
@@ -64,3 +64,5 @@ class Ml():
             results.append(obj)
         
         return results
+
+

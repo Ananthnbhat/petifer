@@ -11,6 +11,9 @@ import os
 from pathlib import Path
 import uuid
 from .image_recognition.extractface import ExtractFace
+from .image_recognition.petmatcher import PetMatcher
+import pickle
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 IMAGE_PATH = os.path.join(BASE_DIR, "images")
@@ -48,6 +51,19 @@ class AllPetsView(APIView):
             ExtractFace.extract_face(imageid, imagepath, output_file)
 
             serializer.validated_data['image'] = output_file
+
+            modelDir = '\\api\\models\\'
+
+            # load model
+            pet_matcher = PetMatcher()
+            features = pet_matcher.create_face_features_for_image_file(output_file)
+
+            feature_file = os.path.join(FACE_DIR, imageid + ".npy")
+            ff = open(feature_file, 'w+b')
+            ff.write(pickle.dumps(features))
+            ff.close()
+
+            serializer.validated_data['face_features'] = feature_file
 
             serializer.save()
 
@@ -103,3 +119,5 @@ class SinglePetView(APIView):
         pet = self.get_object(pk)
         pet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+

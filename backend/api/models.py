@@ -15,5 +15,7 @@ class Pet(models.Model):
     latitude = models.TextField(default="", blank=True)
     longitude = models.TextField(default="", blank=True)
 
+    face_features = models.TextField(default="")
+
     def __str__(self) -> str:
         return self.image
