@@ -56,14 +56,14 @@ class AllPetsView(APIView):
 
             # load model
             pet_matcher = PetMatcher()
-            features = pet_matcher.create_face_features_for_image_file(output_file)
+            #features = pet_matcher.create_face_features_for_image_file(output_file)
 
-            feature_file = os.path.join(FACE_DIR, imageid + ".npy")
-            ff = open(feature_file, 'w+b')
-            ff.write(pickle.dumps(features))
-            ff.close()
+            #feature_file = os.path.join(FACE_DIR, imageid + ".npy")
+            #ff = open(feature_file, 'w+b')
+            #ff.write(pickle.dumps(features))
+            #ff.close()
 
-            serializer.validated_data['face_features'] = feature_file
+            #serializer.validated_data['face_features'] = feature_file
 
             serializer.save()
 

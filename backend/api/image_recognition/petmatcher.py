@@ -30,14 +30,14 @@ class PetMatcher:
         pet_image = pet['image']
 
 
-        #pet_to_compare_face_features = self.__create_face_features_for_image_file(pet_image)
-        pet_to_compare_face_features = np.load(pet['face_features'], allow_pickle=True)
+        pet_to_compare_face_features = self.create_face_features_for_image_file(pet_image)
+        #pet_to_compare_face_features = np.load(pet['face_features'], allow_pickle=True)
 
         for other_pet in found_pets:
             print(other_pet)
             other_pet_image = other_pet.image
-            #other_pet_face_features = self.__create_face_features_for_image_file(other_pet_image)
-            other_pet_face_features = np.load(other_pet.face_features, allow_pickle=True)
+            other_pet_face_features = self.create_face_features_for_image_file(other_pet_image)
+            #other_pet_face_features = np.load(other_pet.face_features, allow_pickle=True)
             face_features_pair = self.__create_face_features_pair(pet_to_compare_face_features, other_pet_face_features)
 
             face_features_pair = self.__pca_model.transform(face_features_pair)
