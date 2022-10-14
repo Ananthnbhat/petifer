@@ -58,11 +58,11 @@ const MatchedPets = ({ route }) => {
                 <Text style={styles.streetName}>{pet.streetName},&nbsp;{'\n'}{pet.city}</Text>
                 <View style={styles.accLocWrapper}>
                   <View style={styles.acc}>
-                    <Text style={{ fontWeight: 'bold', color: 'black' }}>Accuracy</Text>
+                    <Text style={{ fontWeight: 'bold', color: 'gray' }}>Accuracy</Text>
                     <Text style={{ alignSelf: 'center', color: 'black' }}>{pet.accuracy * 100}%</Text>
                   </View>
                   <View style={styles.dist}>
-                    <Text style={{ fontWeight: 'bold', color: 'black' }}>Distance</Text>
+                    <Text style={{ fontWeight: 'bold', color: 'gray' }}>Distance</Text>
                     <Text style={{ alignSelf: 'flex-start', color: 'black' }}>{pet.distance}km</Text>
                   </View>
                 </View>

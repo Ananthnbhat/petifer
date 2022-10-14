@@ -7,7 +7,7 @@ export const EMPTY_IMAGE_DETAILS = {
 export const FOUND = 'found';
 export const LOST = 'lost';
 export const SUCCESS_MSG = 'Image uploaded successfully !';
-export const FAILURE_MSG = 'Upload unsuccesful, please try again';
+export const FAILURE_MSG = 'Upload unsuccessful, please try again';
 export const NO_MATCHED_PETS = 'Sorry, couldnt find any matching pets';
 
 export const EMPTY_MATCHED_PETS = [{

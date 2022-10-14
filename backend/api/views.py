@@ -53,7 +53,7 @@ class AllPetsView(APIView):
             serializer.validated_data['image'] = output_file
 
             if (os.path.exists(output_file) == False):
-                return Response("Face image extraction failed, no entry saved", status=500)
+                return Response("Upload unsuccessful, please select/capture an image containig pet face", status=500)
 
             modelDir = '\\api\\models\\'
 

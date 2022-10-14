@@ -2,20 +2,14 @@ import { API_URL } from '@env';
 
 const postNewPet = async data => {
     try {
-        const result = await fetch(API_URL, {
+        const result = await fetch('http://192.168.1.11:8000/pets/', {
             body: JSON.stringify(data),
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-
-        if (result.ok) {
-            const jsonData = await result.json();
-            return jsonData;
-        } else {
-            return false;
-        }
+        return [await result.json(), result.ok];
     } catch (err) {
         console.error(err);
         return false;

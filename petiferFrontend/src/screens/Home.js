@@ -18,7 +18,7 @@ const Home = ({ navigation }) => {
 
   const [status, setStatus] = useState(LOST);
   const [imgDetails, setImgDetails] = useState(EMPTY_IMAGE_DETAILS);
-  const [popupText, setPopupText] = useState('');
+  const [popupText, setPopupText] = useState('Image uploaded successfully !');
   const [popupBtnText, setPopupBtnText] = useState('Close');
   const [loading, setLoading] = useState(false);
   const [matchedPets, setMatchedPets] = useState(EMPTY_MATCHED_PETS)
@@ -38,18 +38,18 @@ const Home = ({ navigation }) => {
 
       postNewPet(petData).then(result => {
         setLoading(false)
-        if (selectedIndex === 0 && result.length > 0) {
-          setMatchedPets(result)
+        if (selectedIndex === 0 && result[0].length > 0 && result[1]) {
+          setMatchedPets(result[0])
           setPopupText(SUCCESS_MSG)
           setPopupBtnText("View Matched Pets")
 
-        } else if (selectedIndex === 1 && result.hasOwnProperty('image')) {
+        } else if (selectedIndex === 1 && result[0].hasOwnProperty('image') && result[1]) {
           setPopupText(SUCCESS_MSG)
 
-        } else if (result.length === 0) {
+        } else if (result[0].length === 0) {
           setPopupText(NO_MATCHED_PETS)
         } else {
-          setPopupText(FAILURE_MSG)
+          setPopupText(result[0])
 
         }
       });
