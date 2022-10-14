@@ -52,6 +52,9 @@ class AllPetsView(APIView):
 
             serializer.validated_data['image'] = output_file
 
+            if (os.path.exists(output_file) == False):
+                return Response("Face image extraction failed, no entry saved", status=500)
+
             modelDir = '\\api\\models\\'
 
             # load model
@@ -69,16 +72,12 @@ class AllPetsView(APIView):
 
             if serializer.data['status'] == 'lost':
 
-                if (os.path.exists(output_file)):
-
-                    ml = Ml()
-                    results = ml.compare(serializer.data, imagepath)
-                else:
-                    return Response(False, status=500)
+                ml = Ml()
+                results = ml.compare(serializer.data, imagepath)
 
                 return Response(results, status=status.HTTP_201_CREATED)
-            
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             print(serializer.error_messages)
 
